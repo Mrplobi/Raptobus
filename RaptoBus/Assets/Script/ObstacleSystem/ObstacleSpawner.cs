@@ -8,10 +8,10 @@ namespace RaptoBus
     public class ObstacleSpawner : MonoBehaviour
     {
         List<Obstacle> obstacles = new List<Obstacle>();
-        public GameObject obstacleParent;
+        public Transform obstacleParent;
         public List<GameObject> obstaclePrefabs;
+        public List<PatternDescriptor> patterns;
         public float xSpawnPosition;
-        public float spawnTime;
         float timer = 0;
 
         private void Start()
@@ -23,41 +23,39 @@ namespace RaptoBus
         {
             if (GameManager.Instance.playing)
             {
-                timer += Time.deltaTime;
-                if (timer > spawnTime)
+                timer -= Time.deltaTime;
+                if (timer <= 0)
                 {
-                    LaunchObstacle();
-                    timer = 0;
+                    LaunchPattern(patterns[UnityEngine.Random.Range(0, patterns.Count)]);
                 }
             }
         }
 
-        public void LaunchObstacle()
+        public void LaunchPattern(PatternDescriptor descriptor)
         {
-            Obstacle obstacle = obstacles.Find(x => x.available == true);
-            if (obstacle != null)
+            foreach (ObstacleDescriptor obstacleDes in descriptor.obstacles)
             {
-                obstacle.transform.position = new Vector3(xSpawnPosition, obstacle.spawnHeight);
+                Obstacle obstacle = obstacles.Find(x => x.available == true && x.type == obstacleDes.type);
+                if (obstacle == null)
+                {
+                    obstacle = SpawnNewObstacle(obstacleDes);
+                    obstacles.Add(obstacle.GetComponent<Obstacle>());
+                }
+                obstacle.transform.position = new Vector3(xSpawnPosition + obstacleDes.offset, obstacle.spawnHeight);
+                obstacle.Launch();
             }
-            else
-            {
-                obstacle = SpawnNewObstacle();
-                obstacles.Add(obstacle.GetComponent<Obstacle>());
-            }
-            obstacle.transform.position = new Vector3(xSpawnPosition, obstacle.spawnHeight);
-            obstacle.Launch();
+            timer = descriptor.totalPatternTime;            
         }
 
-        public Obstacle SpawnNewObstacle()
+        public Obstacle SpawnNewObstacle(ObstacleDescriptor descriptor)
         {
-            System.Random random = new System.Random(Time.frameCount);
-            GameObject newObstacle = Instantiate(obstaclePrefabs[random.Next(obstaclePrefabs.Count)]);
+            GameObject newObstacle = Instantiate(obstaclePrefabs[(int)descriptor.type], obstacleParent.transform);
             return newObstacle.GetComponent<Obstacle>();
         }
 
         private void Restart()
         {
-            timer = 0;
+            timer = 2;
         }
     }
 }

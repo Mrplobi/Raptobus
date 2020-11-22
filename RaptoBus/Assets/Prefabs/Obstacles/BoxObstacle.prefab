@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: spawnHeight
       value: 2.64
       objectReference: {fileID: 0}
+    - target: {fileID: 3040820003328417713, guid: c0a0381d10036b149b26b50576698bed, type: 3}
+      propertyPath: type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3040820003328417714, guid: c0a0381d10036b149b26b50576698bed, type: 3}
       propertyPath: m_Name
       value: BoxObstacle

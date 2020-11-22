@@ -1728,11 +1728,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d842cca2834b90c41970ad0b55182754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleParent: {fileID: 778141095}
+  obstacleParent: {fileID: 778141096}
   obstaclePrefabs:
+  - {fileID: 7490544067506990375, guid: e7264004aaac58d4e8a922261fe69800, type: 3}
   - {fileID: 3040820003328417714, guid: c0a0381d10036b149b26b50576698bed, type: 3}
+  patterns:
+  - {fileID: 11400000, guid: 344595dc5b744914bbc86cbb3332bcc7, type: 2}
+  - {fileID: 11400000, guid: 22a8f24aec945be4d948e9fdcc9cc22b, type: 2}
   xSpawnPosition: 16
-  spawnTime: 4
 --- !u!4 &2020203065
 Transform:
   m_ObjectHideFlags: 0

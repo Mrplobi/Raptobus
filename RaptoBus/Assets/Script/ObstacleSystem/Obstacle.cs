@@ -13,6 +13,7 @@ namespace RaptoBus
         [Header("Pool Realated")]
         public bool available = true;
         public float spawnHeight;
+        public ObstacleType type;
 
         // Update is called once per frame
         void Update()
