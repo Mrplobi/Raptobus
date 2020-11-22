@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc8166948166554f891ff05fea57b1d, type: 3}
+  m_Name: PatternTest
+  m_EditorClassIdentifier: 
+  obstacles:
+  - type: 1
+    offset: 0
+  - type: 0
+    offset: 3
+  - type: 1
+    offset: 3.5
+  numberOfRaptors: 0

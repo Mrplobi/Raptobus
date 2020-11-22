@@ -25,9 +25,12 @@ namespace RaptoBus
         // Update is called once per frame
         void Update()
         {
-            dist = Mathf.Repeat(Time.time * parallaxSpeed, length);
-            newPos = new Vector3(dist, 0, 0);
-            transform.position = startPos - newPos;
+            if (GameManager.Instance.playing)
+            {
+                dist = Mathf.Repeat(Time.time * parallaxSpeed, length);
+                newPos = new Vector3(dist, 0, 0);
+                transform.position = startPos - newPos;
+            }
         }
     }
 }

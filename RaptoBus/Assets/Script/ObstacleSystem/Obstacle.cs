@@ -17,10 +17,18 @@ namespace RaptoBus
         // Update is called once per frame
         void Update()
         {
-            transform.position += new Vector3(speed, 0, 0);
+            if (GameManager.Instance.playing)
+            {
+                transform.position += new Vector3(speed, 0, 0);
+            }
         }
 
-        public void OnBecameInvisible()
+        private void OnBecameInvisible()
+        {
+            Free();
+        }
+
+        public void Free()
         {
             gameObject.SetActive(false);
             available = true;

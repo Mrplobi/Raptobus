@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,13 +14,21 @@ namespace RaptoBus
         public float spawnTime;
         float timer = 0;
 
+        private void Start()
+        {
+            GameManager.Instance.onReset += Restart;
+        }
+
         private void Update()
         {
-            timer += Time.deltaTime;
-            if (timer > spawnTime)
+            if (GameManager.Instance.playing)
             {
-                LaunchObstacle();
-                timer = 0;
+                timer += Time.deltaTime;
+                if (timer > spawnTime)
+                {
+                    LaunchObstacle();
+                    timer = 0;
+                }
             }
         }
 
@@ -44,6 +53,11 @@ namespace RaptoBus
             System.Random random = new System.Random(Time.frameCount);
             GameObject newObstacle = Instantiate(obstaclePrefabs[random.Next(obstaclePrefabs.Count)]);
             return newObstacle.GetComponent<Obstacle>();
+        }
+
+        private void Restart()
+        {
+            timer = 0;
         }
     }
 }

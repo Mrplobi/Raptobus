@@ -30,9 +30,12 @@ namespace RaptoBus
 
         private void FixedUpdate()
         {
-            //Debug.Log(Input.GetAxis("Jump"));
-            Jump();
-            FastFall();
+            if (GameManager.Instance.playing)
+            {
+                //Debug.Log(Input.GetAxis("Jump"));
+                Jump();
+                FastFall();
+            }
         }
 
         private bool isGrounded()
@@ -81,7 +84,7 @@ namespace RaptoBus
         {
             if (other.GetComponent<Obstacle>() != null)
             {
-                GameManager.Instance.onDefeat.Invoke();
+                GameManager.Instance.Defeat();
             }
             else if (other.GetComponent<Raptor>() != null)
             {

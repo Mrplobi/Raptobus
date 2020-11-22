@@ -10,7 +10,10 @@ namespace RaptoBus
 
         void Update()
         {
-            transform.position += new Vector3(speed, 0, 0);
+            if (GameManager.Instance.playing)
+            {
+                transform.position += new Vector3(speed, 0, 0);
+            }
         }
     }
 }

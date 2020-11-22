@@ -14,6 +14,8 @@ namespace RaptoBus
         public UnityAction onReset;
         public UnityAction onWin;
 
+        public bool playing = true;
+
         private void Awake()
         {
             if (Instance == null)
@@ -29,11 +31,18 @@ namespace RaptoBus
         public void ResetGame()
         {
             onReset.Invoke();
+            playing = true;
         }
 
         public void ReturnToMenu()
         {
             SceneManager.LoadScene(0);
+        }
+
+        public void Defeat()
+        {
+            onDefeat.Invoke();
+            playing = false;
         }
     }
 }
