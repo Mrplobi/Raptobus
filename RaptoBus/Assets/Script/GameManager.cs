@@ -13,6 +13,8 @@ namespace RaptoBus
         public UnityAction onDefeat;
         public UnityAction onReset;
         public UnityAction onWin;
+        public UnityAction onInit;
+        public UnityAction onLaunch;
 
         public bool playing = true;
 
@@ -26,6 +28,24 @@ namespace RaptoBus
             {
                 Destroy(this);
             }
+        }
+
+
+        private void Start()
+        {
+            InitGame();
+        }
+
+        public void InitGame()
+        {
+            onInit.Invoke();
+            playing = false;
+        }
+
+        public void LaunchGame()
+        {
+            onLaunch.Invoke();
+            playing = true;
         }
 
         public void ResetGame()

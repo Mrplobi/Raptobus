@@ -8,6 +8,8 @@ namespace RaptoBus
 {
     public class UIManager : MonoBehaviour
     {
+        public GameObject initCanvas;
+        public GameObject gameCanvas;
         public GameObject failCanvas;
         public GameObject winCanvas;
 
@@ -17,6 +19,20 @@ namespace RaptoBus
             GameManager.Instance.onDefeat += DisplayFail;
             GameManager.Instance.onReset += ResetGame;
             GameManager.Instance.onWin += DisplayWin;
+            GameManager.Instance.onInit += DisplayInit;
+            GameManager.Instance.onLaunch += DisplayLaunch;
+        }
+
+
+        private void DisplayInit()
+        {
+            initCanvas.SetActive(true);
+        }
+
+        private void DisplayLaunch()
+        {
+            initCanvas.SetActive(false);
+            gameCanvas.SetActive(true);
         }
 
         private void DisplayFail()
@@ -33,6 +49,7 @@ namespace RaptoBus
         {
             failCanvas.SetActive(false);
             winCanvas.SetActive(false);
+            // Reset game canvas - dist = 0, hide raptor count
         }
     }
 }
