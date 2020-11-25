@@ -8,6 +8,15 @@ namespace RaptoBus
     {
         public float speed;
 
+        /*
+         * 
+         * 
+         * TODO
+         * 
+         * Keep the update movement for when raptor is missed and runs after bus
+         * Otherwise raptor is considered a simple obstacle
+         * 
+         * 
         void Update()
         {
             if (GameManager.Instance.playing)
@@ -15,5 +24,6 @@ namespace RaptoBus
                 transform.position += new Vector3(speed, 0, 0);
             }
         }
+        */
     }
 }

@@ -82,13 +82,13 @@ namespace RaptoBus
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<Obstacle>() != null)
-            {
-                GameManager.Instance.Defeat();
-            }
-            else if (other.GetComponent<Raptor>() != null)
+            if (other.GetComponent<Raptor>() != null)
             {
                 AddRaptor();
+            }
+            else if (other.GetComponent<Obstacle>() != null)
+            {
+                GameManager.Instance.Defeat();
             }
         }
 

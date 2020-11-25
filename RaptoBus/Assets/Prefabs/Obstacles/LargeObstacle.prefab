@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3040820003328417714, guid: c0a0381d10036b149b26b50576698bed, type: 3}
       propertyPath: m_Name
-      value: BoxObstacle
+      value: LargeObstacle
       objectReference: {fileID: 0}
     - target: {fileID: 3040820003328417719, guid: c0a0381d10036b149b26b50576698bed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -70,6 +70,10 @@ PrefabInstance:
     - target: {fileID: 3040820003328417719, guid: c0a0381d10036b149b26b50576698bed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040820003328417719, guid: c0a0381d10036b149b26b50576698bed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6862134865537765712, guid: c0a0381d10036b149b26b50576698bed, type: 3}
       propertyPath: m_Size.y

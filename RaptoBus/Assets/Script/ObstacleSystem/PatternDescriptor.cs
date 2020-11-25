@@ -13,5 +13,6 @@ namespace RaptoBus
         public List<ObstacleDescriptor> obstacles;
         public int numberOfRaptors;
         public float totalPatternTime;
+        public int difficultyLvl;
     }
 }

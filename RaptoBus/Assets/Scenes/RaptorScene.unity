@@ -2486,9 +2486,18 @@ MonoBehaviour:
   obstaclePrefabs:
   - {fileID: 7490544067506990375, guid: e7264004aaac58d4e8a922261fe69800, type: 3}
   - {fileID: 3040820003328417714, guid: c0a0381d10036b149b26b50576698bed, type: 3}
-  patterns:
-  - {fileID: 11400000, guid: 344595dc5b744914bbc86cbb3332bcc7, type: 2}
-  - {fileID: 11400000, guid: 22a8f24aec945be4d948e9fdcc9cc22b, type: 2}
+  - {fileID: 7490544067506990375, guid: e87af0eb79da68f40aa06533bd8f785f, type: 3}
+  - {fileID: 418293945493818659, guid: 4f1689ec44488904b8f84b6a296bdeb4, type: 3}
+  patternslvl1:
+  - {fileID: 11400000, guid: 06ea52d439934c94e8f93de25c450140, type: 2}
+  - {fileID: 11400000, guid: 6f4806e2de8d1464e9fa49d00575ca27, type: 2}
+  - {fileID: 11400000, guid: a960b3baa85ae004dac99f4f4bd16fdd, type: 2}
+  - {fileID: 11400000, guid: ca048fddd85c29040b69152bea6d7cf3, type: 2}
+  - {fileID: 11400000, guid: 1a543e34924ccf3419350f1bdb9bf98f, type: 2}
+  - {fileID: 11400000, guid: 0b7afbf14312c8742a0e82a53129185a, type: 2}
+  - {fileID: 11400000, guid: 5ca130e176cafc248ba7111739496b3f, type: 2}
+  patternslvl2: []
+  patternslvl3: []
   xSpawnPosition: 16
 --- !u!4 &2020203065
 Transform:
