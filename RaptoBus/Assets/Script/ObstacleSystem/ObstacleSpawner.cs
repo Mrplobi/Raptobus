@@ -15,15 +15,21 @@ namespace RaptoBus
         public List<PatternDescriptor> patternslvl3;
         private List<PatternDescriptor> currentPatterns;
         public float xSpawnPosition;
+
         float timer = 0;
         float globalDist = 0; // used to increment difficulty lvl
-        float nextLvlDist = 100; // TODO optimize value
+        float nextLvlDist = 10; // TODO optimize value
         int lvl = 1;
+        private List<PatternDescriptor>[] patterns = new List<PatternDescriptor>[3];
+        private int idPattern = 0;
 
         private void Start()
         {
             GameManager.Instance.onReset += Restart;
-            currentPatterns = patternslvl1;
+            patterns[0] = patternslvl1;
+            patterns[1] = patternslvl2;
+            patterns[2] = patternslvl3;
+            currentPatterns = patterns[idPattern];
         }
 
         private void Update()
@@ -32,18 +38,18 @@ namespace RaptoBus
             {
                 timer -= Time.deltaTime;
                 globalDist += Time.deltaTime;
-                Debug.Log(globalDist);
-                /* TODO
-                 * Improve the pattern lvl selection
-                if(globalDist >= nextLvlDist && globalDist < 2*nextLvlDist)
+                if(globalDist >= nextLvlDist && lvl < 3)
                 {
-                    currentPatterns = patternslvl2;
+                    globalDist = 0;
+                    lvl++;
+                    idPattern++;
+                     currentPatterns = patterns[idPattern];
                 }
-                if(globalDist > 2 * nextLvlDist)
-                {
-                    currentPatterns = patternslvl3;
-                }
-                */
+
+                /*
+                 * TODO > endgame
+                 */
+
                 if (timer <= 0)
                 {
                     LaunchPattern(currentPatterns[UnityEngine.Random.Range(0, currentPatterns.Count)]);

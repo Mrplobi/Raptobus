@@ -2496,8 +2496,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1a543e34924ccf3419350f1bdb9bf98f, type: 2}
   - {fileID: 11400000, guid: 0b7afbf14312c8742a0e82a53129185a, type: 2}
   - {fileID: 11400000, guid: 5ca130e176cafc248ba7111739496b3f, type: 2}
-  patternslvl2: []
-  patternslvl3: []
+  patternslvl2:
+  - {fileID: 11400000, guid: c4f1a5480da59db4a804b28a7bd06636, type: 2}
+  - {fileID: 11400000, guid: 6b153427fcde9ec4a85974f0fb6ff3f7, type: 2}
+  - {fileID: 11400000, guid: 6211c22f50019ec4fbffba35efe62b34, type: 2}
+  - {fileID: 11400000, guid: 34b67d24202faba4a9cffe5dc7b3ef0f, type: 2}
+  - {fileID: 11400000, guid: 8af5053c46861f04a8de8dd0c8f0fa7f, type: 2}
+  patternslvl3:
+  - {fileID: 11400000, guid: c81f7ac9d095b6843ae24833c9f3d6a5, type: 2}
+  - {fileID: 11400000, guid: 42232e9e76062bf43ae12b7a7657db9e, type: 2}
   xSpawnPosition: 16
 --- !u!4 &2020203065
 Transform:
