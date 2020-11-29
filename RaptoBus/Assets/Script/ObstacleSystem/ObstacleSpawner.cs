@@ -13,13 +13,12 @@ namespace RaptoBus
         public List<PatternDescriptor> patternslvl1;
         public List<PatternDescriptor> patternslvl2;
         public List<PatternDescriptor> patternslvl3;
-        private List<PatternDescriptor> currentPatterns;
+        [SerializeField]
+        private List<PatternDescriptor> completePatterns = new List<PatternDescriptor>();
         public float xSpawnPosition;
 
         float timer = 0;
-        float globalDist = 0; // used to increment difficulty lvl
-        float nextLvlDist = 10; // TODO optimize value
-        int lvl = 1;
+        
         private List<PatternDescriptor>[] patterns = new List<PatternDescriptor>[3];
         private int idPattern = 0;
 
@@ -29,7 +28,7 @@ namespace RaptoBus
             patterns[0] = patternslvl1;
             patterns[1] = patternslvl2;
             patterns[2] = patternslvl3;
-            currentPatterns = patterns[idPattern];
+            completePatterns = ChoosePaterns();
         }
 
         private void Update()
@@ -37,22 +36,10 @@ namespace RaptoBus
             if (GameManager.Instance.playing)
             {
                 timer -= Time.deltaTime;
-                globalDist += Time.deltaTime;
-                if(globalDist >= nextLvlDist && lvl < 3)
-                {
-                    globalDist = 0;
-                    lvl++;
-                    idPattern++;
-                     currentPatterns = patterns[idPattern];
-                }
-
-                /*
-                 * TODO > endgame
-                 */
-
                 if (timer <= 0)
                 {
-                    LaunchPattern(currentPatterns[UnityEngine.Random.Range(0, currentPatterns.Count)]);
+                    LaunchPattern(completePatterns[idPattern]);
+                    idPattern++;
                 }
             }
         }
@@ -69,7 +56,7 @@ namespace RaptoBus
                     obstacles.Add(obstacle.GetComponent<Obstacle>());
                 }
                 obstacle.transform.position = new Vector3(xSpawnPosition + obstacleDes.offset, obstacle.spawnHeight);
-                obstacle.Launch(lvl);
+                obstacle.Launch(descriptor.difficultyLvl);
             }
             timer = descriptor.totalPatternTime;            
         }
@@ -80,9 +67,37 @@ namespace RaptoBus
             return newObstacle.GetComponent<Obstacle>();
         }
 
+        private List<PatternDescriptor> ChoosePaterns()
+        {
+            int raptorCount = 0;
+            List<PatternDescriptor> totalPatterns = new List<PatternDescriptor>();
+            PatternDescriptor previousPattern = new PatternDescriptor();
+            for (int i = 0; i < 3; i++)
+            {
+                while (raptorCount < (i+1)*10)
+                {
+                    PatternDescriptor newPattern = (patterns[i])[UnityEngine.Random.Range(0, patterns[i].Count)];
+                    if(newPattern != previousPattern)
+                    {
+                        totalPatterns.Add(newPattern);
+                        previousPattern = newPattern;
+                        raptorCount += newPattern.numberOfRaptors;
+                        Progression.totalDist += newPattern.totalPatternTime;
+                    }
+                }
+            }
+            return totalPatterns;
+        }
+
         private void Restart()
         {
             timer = 2;
+            idPattern = 0;
+            foreach (Obstacle obstacle in obstacles)
+            {
+                obstacle.Free();
+            }
+            completePatterns = ChoosePaterns();
         }
     }
 }

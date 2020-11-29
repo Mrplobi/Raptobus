@@ -4,9 +4,12 @@ using UnityEngine;
 
 namespace RaptoBus
 {
-    public class Raptor : MonoBehaviour
+    public class Raptor : Obstacle
     {
-        public float speed;
+        public void OnBecameInvisible()
+        {
+            
+        }
 
         /*
          * 

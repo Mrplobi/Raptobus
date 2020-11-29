@@ -85,6 +85,7 @@ namespace RaptoBus
             if (other.GetComponent<Raptor>() != null)
             {
                 AddRaptor();
+                other.GetComponent<Raptor>().Free();
             }
             else if (other.GetComponent<Obstacle>() != null)
             {
