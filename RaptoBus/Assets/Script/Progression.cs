@@ -23,6 +23,10 @@ namespace RaptoBus
             {
                 globalDist += Time.deltaTime;
                 progressDisplay.value = globalDist / totalDist;
+                if(globalDist >= totalDist)
+                {
+                    GameManager.Instance.Win();
+                }
             }
         }
 

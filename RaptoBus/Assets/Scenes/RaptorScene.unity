@@ -2634,6 +2634,7 @@ MonoBehaviour:
   patternslvl3:
   - {fileID: 11400000, guid: c81f7ac9d095b6843ae24833c9f3d6a5, type: 2}
   - {fileID: 11400000, guid: 42232e9e76062bf43ae12b7a7657db9e, type: 2}
+  emptyPattern: {fileID: 11400000, guid: 18c6b12db612cf441b9974a4ad4c9c9c, type: 2}
   completePatterns: []
   xSpawnPosition: 16
 --- !u!4 &2020203065

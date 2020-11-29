@@ -64,5 +64,10 @@ namespace RaptoBus
             onDefeat.Invoke();
             playing = false;
         }
+        public void Win()
+        {
+            onWin.Invoke();
+            playing = false;
+        }
     }
 }

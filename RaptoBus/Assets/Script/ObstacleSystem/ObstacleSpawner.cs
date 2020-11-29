@@ -13,6 +13,8 @@ namespace RaptoBus
         public List<PatternDescriptor> patternslvl1;
         public List<PatternDescriptor> patternslvl2;
         public List<PatternDescriptor> patternslvl3;
+        public PatternDescriptor emptyPattern;
+
         [SerializeField]
         private List<PatternDescriptor> completePatterns = new List<PatternDescriptor>();
         public float xSpawnPosition;
@@ -36,7 +38,7 @@ namespace RaptoBus
             if (GameManager.Instance.playing)
             {
                 timer -= Time.deltaTime;
-                if (timer <= 0)
+                if (timer <= 0 && idPattern < completePatterns.Count)
                 {
                     LaunchPattern(completePatterns[idPattern]);
                     idPattern++;
@@ -74,6 +76,9 @@ namespace RaptoBus
             PatternDescriptor previousPattern = new PatternDescriptor();
             for (int i = 0; i < 3; i++)
             {
+                totalPatterns.Add(emptyPattern);
+                raptorCount += emptyPattern.numberOfRaptors;
+                Progression.totalDist += emptyPattern.totalPatternTime;
                 while (raptorCount < (i+1)*10)
                 {
                     PatternDescriptor newPattern = (patterns[i])[UnityEngine.Random.Range(0, patterns[i].Count)];
