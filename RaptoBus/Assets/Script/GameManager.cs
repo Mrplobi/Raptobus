@@ -17,6 +17,7 @@ namespace RaptoBus
         public UnityAction onLaunch;
 
         public bool playing = true;
+        public int maxRaptor = 30;
 
         private void Awake()
         {

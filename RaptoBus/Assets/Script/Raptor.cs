@@ -68,14 +68,6 @@ namespace RaptoBus
         }
 
 
-        // When freed (on restart) > reinit raptor
-        public new void Free()
-        {
-            isFollowingBus = false;
-            base.Free();
-        }
-
-
         public void Collected()
         {
             isCollected = true;
@@ -86,18 +78,5 @@ namespace RaptoBus
             transform.position = new Vector3(Player.playerPos.x - Random.Range(0.1f, Player.playerSize.x / 2), Random.Range(transform.parent.position.y, Player.playerPos.y + Player.playerSize.y), 0.1f);
             GetComponent<Collider>().enabled = false;
         }
-
-        /*
-         * 
-         * 
-         * TODO
-         * 
-         * Keep the update movement for when raptor is missed and runs after bus
-         * Otherwise raptor is considered a simple obstacle
-         * 
-         * Override Free() to jump into bus
-         * Override OnBecomeInvisible() to chase after bus
-         * 
-        */
     }
 }

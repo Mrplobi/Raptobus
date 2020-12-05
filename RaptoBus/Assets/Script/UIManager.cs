@@ -3,17 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace RaptoBus
 {
     public class UIManager : MonoBehaviour
     {
+
+        public static UIManager Instance;
+
+
         public GameObject initCanvas;
         public GameObject gameCanvas;
         public GameObject failCanvas;
         public GameObject winCanvas;
 
-        // Start is called before the first frame update
+
+        private int raptorCount;
+
+
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+        }
+
+
         void Start()
         {
             GameManager.Instance.onDefeat += DisplayFail;
@@ -49,7 +71,14 @@ namespace RaptoBus
         {
             failCanvas.SetActive(false);
             winCanvas.SetActive(false);
+            gameCanvas.GetComponent<IngameUI>().Restart();
             // Reset game canvas - dist = 0, hide raptor count
+        }
+
+
+        public void AddRaptorCount()
+        {
+            gameCanvas.GetComponent<IngameUI>().DisplayRaptorCount();
         }
     }
 }

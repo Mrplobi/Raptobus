@@ -102,6 +102,7 @@ namespace RaptoBus
         {
             RaptorCount++;
             Debug.Log("Raptor Get! " + raptorCount + "/30");
+            UIManager.Instance.AddRaptorCount();
         }
     }
 }
