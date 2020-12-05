@@ -58,6 +58,7 @@ namespace RaptoBus
                     obstacles.Add(obstacle.GetComponent<Obstacle>());
                 }
                 obstacle.transform.position = new Vector3(xSpawnPosition + obstacleDes.offset, obstacle.spawnHeight);
+                obstacle.transform.SetParent(obstacleParent);
                 obstacle.Launch(descriptor.difficultyLvl);
             }
             timer = descriptor.totalPatternTime;            

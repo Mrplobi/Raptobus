@@ -21,11 +21,16 @@ namespace RaptoBus
 
         Rigidbody body;
 
+        public static Vector3 playerPos;
+        public static Vector3 playerSize;
+
         public int RaptorCount { get => raptorCount; private set => raptorCount = value; }
 
         private void Awake()
         {
             body = GetComponent<Rigidbody>();
+            playerPos = transform.position;
+            playerSize = GetComponent<SpriteRenderer>().bounds.size;
         }
 
         private void FixedUpdate()
@@ -85,7 +90,7 @@ namespace RaptoBus
             if (other.GetComponent<Raptor>() != null)
             {
                 AddRaptor();
-                other.GetComponent<Raptor>().Free();
+                other.GetComponent<Raptor>().Collected();
             }
             else if (other.GetComponent<Obstacle>() != null)
             {
