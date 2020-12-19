@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3040820003328417719}
   - component: {fileID: 3040820003328417712}
   - component: {fileID: 3040820003328417713}
-  - component: {fileID: 6862134865537765712}
+  - component: {fileID: 2639100419046482195}
   - component: {fileID: 6712096576257417145}
   m_Layer: 0
   m_Name: Mikobstacle
@@ -101,8 +101,8 @@ MonoBehaviour:
   available: 1
   spawnHeight: 3.76
   type: 1
---- !u!65 &6862134865537765712
-BoxCollider:
+--- !u!136 &2639100419046482195
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -111,8 +111,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 12.11, y: 13.9, z: 0.2}
+  m_Radius: 1
+  m_Height: 17.39
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6712096576257417145
 Rigidbody:

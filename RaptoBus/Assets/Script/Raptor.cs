@@ -55,7 +55,7 @@ namespace RaptoBus
         void Update()
         {
             // Follow bus if not collected
-            if (GameManager.Instance.playing && isFollowingBus)
+            if (GameManager.Instance.Playing && isFollowingBus)
             {
                 transform.position += new Vector3(speed*Time.deltaTime, 0, 0);
                 if(transform.position.x >= (Player.playerPos.x - Player.playerSize.x - spriteWidth/2))

@@ -16,8 +16,16 @@ namespace RaptoBus
         public UnityAction onInit;
         public UnityAction onLaunch;
 
-        public bool playing = true;
+        private bool playing = true;
+
         public int maxRaptor = 30;
+
+
+        [Header("Ending")]
+        public GameObject endingPrefab;
+        public GameObject endingParent;
+
+        public bool Playing { get => playing; set => playing = value; }
 
         private void Awake()
         {
@@ -40,19 +48,19 @@ namespace RaptoBus
         public void InitGame()
         {
             onInit.Invoke();
-            playing = false;
+            Playing = false;
         }
 
         public void LaunchGame()
         {
             onLaunch.Invoke();
-            playing = true;
+            Playing = true;
         }
 
         public void ResetGame()
         {
             onReset.Invoke();
-            playing = true;
+            Playing = true;
         }
 
         public void ReturnToMenu()
@@ -63,12 +71,13 @@ namespace RaptoBus
         public void Defeat()
         {
             onDefeat.Invoke();
-            playing = false;
+            Playing = false;
         }
         public void Win()
         {
+            Instantiate(endingPrefab, endingParent.transform);
             onWin.Invoke();
-            playing = false;
+            Playing = false;
         }
     }
 }

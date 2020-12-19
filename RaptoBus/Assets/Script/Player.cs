@@ -26,16 +26,18 @@ namespace RaptoBus
 
         public int RaptorCount { get => raptorCount; private set => raptorCount = value; }
 
-        private void Awake()
+        private void Start()
         {
             body = GetComponent<Rigidbody>();
             playerPos = transform.position;
             playerSize = GetComponent<SpriteRenderer>().bounds.size;
+            GameManager.Instance.onWin += Arrive;
+            GameManager.Instance.onReset += ResetPos;
         }
 
         private void FixedUpdate()
         {
-            if (GameManager.Instance.playing)
+            if (GameManager.Instance.Playing)
             {
                 //Debug.Log(Input.GetAxis("Jump"));
                 Jump();
@@ -103,6 +105,23 @@ namespace RaptoBus
             RaptorCount++;
             Debug.Log("Raptor Get! " + raptorCount + "/30");
             UIManager.Instance.AddRaptorCount();
+        }
+
+        public void Arrive()
+        {
+            GetComponent<Animator>().enabled = true;
+            GetComponent<Animator>().SetTrigger("Arrive");
+        }
+
+        public void CallVictoryScreen()
+        {
+            GetComponent<Animator>().enabled = false;
+            UIManager.Instance.DisplayWin();
+        }
+
+        public void ResetPos()
+        {
+            transform.position = playerPos;
         }
     }
 }

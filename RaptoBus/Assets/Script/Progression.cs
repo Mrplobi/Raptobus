@@ -19,7 +19,7 @@ namespace RaptoBus
 
         private void Update()
         {
-            if(GameManager.Instance.playing)
+            if(GameManager.Instance.Playing)
             {
                 globalDist += Time.deltaTime;
                 progressDisplay.value = globalDist / totalDist;

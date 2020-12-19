@@ -30,12 +30,12 @@ namespace RaptoBus
             patterns[0] = patternslvl1;
             patterns[1] = patternslvl2;
             patterns[2] = patternslvl3;
-            completePatterns = ChoosePaterns();
+            ChoosePaterns();
         }
 
         private void Update()
         {
-            if (GameManager.Instance.playing)
+            if (GameManager.Instance.Playing)
             {
                 timer -= Time.deltaTime;
                 if (timer <= 0 && idPattern < completePatterns.Count)
@@ -70,40 +70,48 @@ namespace RaptoBus
             return newObstacle.GetComponent<Obstacle>();
         }
 
-        private List<PatternDescriptor> ChoosePaterns()
+        private void ChoosePaterns()
         {
+            completePatterns = new List<PatternDescriptor>();
             int raptorCount = 0;
-            List<PatternDescriptor> totalPatterns = new List<PatternDescriptor>();
             PatternDescriptor previousPattern = new PatternDescriptor();
             for (int i = 0; i < 3; i++)
             {
-                totalPatterns.Add(emptyPattern);
-                raptorCount += emptyPattern.numberOfRaptors;
-                Progression.totalDist += emptyPattern.totalPatternTime;
-                while (raptorCount < (i+1)*10)
+                AddEmpty(1);
+                while (raptorCount < (i+1)*(GameManager.Instance.maxRaptor/3))
                 {
                     PatternDescriptor newPattern = (patterns[i])[UnityEngine.Random.Range(0, patterns[i].Count)];
                     if(newPattern != previousPattern)
                     {
-                        totalPatterns.Add(newPattern);
+                        completePatterns.Add(newPattern);
                         previousPattern = newPattern;
                         raptorCount += newPattern.numberOfRaptors;
                         Progression.totalDist += newPattern.totalPatternTime;
                     }
                 }
             }
-            return totalPatterns;
+            AddEmpty(2);
+        }
+
+        private void AddEmpty(int howMany)
+        {
+            for (int i = 0; i < howMany; i++)
+            {
+                completePatterns.Add(emptyPattern);
+                Progression.totalDist += emptyPattern.totalPatternTime;
+            }
         }
 
         private void Restart()
         {
             timer = 2;
             idPattern = 0;
+            Progression.totalDist = 0;
             foreach (Obstacle obstacle in obstacles)
             {
                 obstacle.Free();
             }
-            completePatterns = ChoosePaterns();
+            ChoosePaterns();
         }
     }
 }

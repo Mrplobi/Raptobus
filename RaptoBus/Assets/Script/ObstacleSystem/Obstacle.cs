@@ -20,7 +20,7 @@ namespace RaptoBus
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (GameManager.Instance.playing)
+            if (GameManager.Instance.Playing)
             {
                 transform.position += new Vector3(speed*Time.deltaTime*speedModifier, 0, 0);
             }

@@ -40,7 +40,6 @@ namespace RaptoBus
         {
             GameManager.Instance.onDefeat += DisplayFail;
             GameManager.Instance.onReset += ResetGame;
-            GameManager.Instance.onWin += DisplayWin;
             GameManager.Instance.onInit += DisplayInit;
             GameManager.Instance.onLaunch += DisplayLaunch;
         }
@@ -62,7 +61,7 @@ namespace RaptoBus
             failCanvas.SetActive(true);
         }
 
-        private void DisplayWin()
+        public void DisplayWin()
         {
             winCanvas.SetActive(true);
         }
