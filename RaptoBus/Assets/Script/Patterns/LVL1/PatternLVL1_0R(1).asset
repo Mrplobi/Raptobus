@@ -15,7 +15,7 @@ MonoBehaviour:
   obstacles:
   - type: 0
     offset: 0
-  - type: 0
+  - type: 4
     offset: 5
   numberOfRaptors: 0
   totalPatternTime: 1.5

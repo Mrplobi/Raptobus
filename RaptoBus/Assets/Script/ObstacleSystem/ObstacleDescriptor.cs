@@ -11,5 +11,5 @@ namespace RaptoBus
         public float offset;
     }
 
-    public enum ObstacleType { Box, Miku, Large, Raptor}
+    public enum ObstacleType { Raptor, Box, Madorobo1, Madorobo2, OpenGL }
 }
