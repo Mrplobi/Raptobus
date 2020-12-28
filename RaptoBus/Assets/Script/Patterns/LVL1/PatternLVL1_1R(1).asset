@@ -15,10 +15,8 @@ MonoBehaviour:
   obstacles:
   - type: 0
     offset: 0
-  - type: 0
-    offset: 5
-  - type: 3
-    offset: 10
+  - type: 2
+    offset: 4
   numberOfRaptors: 1
-  totalPatternTime: 1.5
+  totalPatternTime: 5
   difficultyLvl: 1

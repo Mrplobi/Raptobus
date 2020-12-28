@@ -15,7 +15,8 @@ namespace RaptoBus
         public float spawnHeight;
         public ObstacleType type;
 
-        private int speedModifier = 1;
+        private float speedModifier = 1;
+        private float speedCoeff = 0.8f;
 
         // Update is called once per frame
         void FixedUpdate()
@@ -39,7 +40,7 @@ namespace RaptoBus
 
         internal void Launch(int lvl)
         {
-            speedModifier = lvl;
+            speedModifier = lvl*speedCoeff;
             gameObject.SetActive(true);
             available = false;
         }

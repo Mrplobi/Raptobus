@@ -11,6 +11,7 @@ namespace RaptoBus
         private float baseSpeed = -10;
         private static float spriteWidth;
         private bool isCollected = false;
+        private AudioSource soundEffect;
 
 
 
@@ -18,6 +19,7 @@ namespace RaptoBus
         private void Start()
         {
             spriteWidth = GetComponent<SpriteRenderer>().bounds.size.x;
+            soundEffect = GetComponent<AudioSource>();
         }
 
         private void OnEnable()
@@ -41,7 +43,11 @@ namespace RaptoBus
                 {
                     isFollowingBus = true;
                     speed = 1f;
-                    GetComponent<SpriteRenderer>().flipX = true;
+                    SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+                    foreach(SpriteRenderer s in sprites)
+                    {
+                        s.flipX = true;
+                    }
                 }
                 else
                 {
@@ -71,8 +77,13 @@ namespace RaptoBus
         public void Collected()
         {
             isCollected = true;
+            soundEffect.Play();
             speed = 0f;
-            GetComponent<SpriteRenderer>().flipX = false;
+            SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer s in sprites)
+            {
+                s.flipX = true;
+            }
             transform.localScale = new Vector3(-0.2f, 0.2f, 0.2f);
             transform.SetParent(FindObjectOfType<Player>().transform);
             transform.position = new Vector3(Player.playerPos.x - Random.Range(0.1f, Player.playerSize.x / 2), Random.Range(transform.parent.position.y, Player.playerPos.y + Player.playerSize.y), 0.1f);

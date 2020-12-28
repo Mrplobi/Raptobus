@@ -61,7 +61,7 @@ namespace RaptoBus
                 obstacle.transform.SetParent(obstacleParent);
                 obstacle.Launch(descriptor.difficultyLvl);
             }
-            timer = descriptor.totalPatternTime;            
+            timer = descriptor.totalPatternTime;
         }
 
         public Obstacle SpawnNewObstacle(ObstacleDescriptor descriptor)
