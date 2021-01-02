@@ -101,8 +101,77 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groudDetectDistance: 0.5
   height: 0.5
-  jumpPower: 10
-  fallSpeed: 2
+  jumpPower: 12
+  fallSpeed: 5
+  maxFallSpeed: -30
+  busControls:
+    m_Name: Bus Controls
+    m_Id: 92519446-b8b6-418c-886c-4ae429078d2d
+    m_Asset: {fileID: 0}
+    m_Actions:
+    - m_Name: Jump
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 0c8bfd35-f5a5-4e6e-b6f2-4fd5a15e42ca
+      m_Processors: 
+      m_Interactions: Press(behavior=2)
+      m_SingletonActionBindings: []
+    - m_Name: FastFall
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 132e6ec1-a3fd-4fdf-be01-d8bf983dd9fe
+      m_Processors: 
+      m_Interactions: Press(behavior=2)
+      m_SingletonActionBindings: []
+    m_Bindings:
+    - m_Name: 
+      m_Id: 3a81db67-e65e-4825-a161-c2884dfb2b17
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 71dc8459-b0a3-48ff-9a62-b3491d0f696f
+      m_Path: <Gamepad>/dpad/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    - m_Name: 
+      m_Id: c360a601-9b9d-40c3-9b8d-8af79df98f60
+      m_Path: <Gamepad>/leftStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    - m_Name: 
+      m_Id: ffdc2277-22e7-49b9-ad88-5a2f3619b8d8
+      m_Path: <Gamepad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: FastFall
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 42dcc433-5406-468c-89b4-679c251cf933
+      m_Path: <Gamepad>/dpad/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: FastFall
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 8a22afa8-764e-40aa-9856-7271f2325f46
+      m_Path: <Gamepad>/leftStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: FastFall
+      m_Flags: 0
 --- !u!65 &3762613199286866234
 BoxCollider:
   m_ObjectHideFlags: 0

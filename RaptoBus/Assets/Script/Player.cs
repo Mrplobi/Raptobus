@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace RaptoBus
 {
@@ -14,10 +15,15 @@ namespace RaptoBus
         [Header("Jump")]
         public float jumpPower;
         public float fallSpeed;
+        public float maxFallSpeed;
+
+        [Header("Actions")]
+        public InputActionMap busControls;
 
         private int raptorCount = 0;
 
-        bool ascending;
+        bool ascending = false;
+        bool fastFalling = false;
 
         Rigidbody body;
 
@@ -26,22 +32,48 @@ namespace RaptoBus
 
         public int RaptorCount { get => raptorCount; private set => raptorCount = value; }
 
+        private void Awake()
+        {
+            busControls["Jump"].performed += Jump;
+            busControls["FastFall"].performed += FastFall;
+        }
+
         private void Start()
         {
             body = GetComponent<Rigidbody>();
             playerPos = transform.position;
             playerSize = GetComponent<SpriteRenderer>().bounds.size;
             GameManager.Instance.onWin += Arrive;
+            GameManager.Instance.onLaunch += ToggleControls;
+            GameManager.Instance.onDefeat += ToggleControls;
             GameManager.Instance.onReset += ResetPos;
         }
 
         private void FixedUpdate()
         {
-            if (GameManager.Instance.Playing)
+            if (fastFalling == true)
             {
-                //Debug.Log(Input.GetAxis("Jump"));
-                Jump();
-                FastFall();
+                if (isGrounded())
+                {
+                    fastFalling = false;
+                    return;
+                }
+                else if (body.velocity.y > maxFallSpeed)
+                {
+                    body.velocity = new Vector3(0, body.velocity.y - fallSpeed);
+                }
+            }
+        }
+
+        public void ToggleControls()
+        {
+            if(busControls.enabled)
+            {
+                busControls.Disable();
+            }
+            else
+            {
+                busControls.Enable();
             }
         }
 
@@ -58,20 +90,16 @@ namespace RaptoBus
             return false;
         }
 
-        private void Jump()
+        private void Jump(InputAction.CallbackContext context)
         {
-            if (isGrounded() && Input.GetAxis("Jump") == 1f)
+            if (GameManager.Instance.Playing)
             {
-                ascending = true;
-                body.velocity = new Vector3(0, jumpPower);
-            }
-            else if (ascending)
-            {
-                if (body.velocity.y <= 0)
+                if (isGrounded())
                 {
-                    ascending = false;
+                    ascending = true;
+                    body.velocity = new Vector3(0, jumpPower);
                 }
-                else if (Input.GetAxis("Jump") != 1f)
+                else if (ascending)
                 {
                     body.velocity = new Vector3(0, body.velocity.y / 2);
                     ascending = false;
@@ -79,11 +107,13 @@ namespace RaptoBus
             }
         }
 
-        private void FastFall()
+        private void FastFall(InputAction.CallbackContext context)
         {
-            if (!isGrounded() && Input.GetAxis("Jump") == -1f)
+            if (!isGrounded())
             {
                 body.velocity = new Vector3(0, body.velocity.y - fallSpeed);
+                fastFalling = true;
+                ascending = false;
             }
         }
 
@@ -111,6 +141,7 @@ namespace RaptoBus
         {
             GetComponent<Animator>().enabled = true;
             GetComponent<Animator>().SetTrigger("Arrive");
+            ToggleControls();
         }
 
         public void CallVictoryScreen()
@@ -122,6 +153,7 @@ namespace RaptoBus
         public void ResetPos()
         {
             transform.position = playerPos;
+            ToggleControls();
         }
     }
 }

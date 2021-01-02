@@ -15,11 +15,11 @@ namespace RaptoBus
         public UnityAction onWin;
         public UnityAction onInit;
         public UnityAction onLaunch;
+        public UnityAction onPause;
 
         private bool playing = true;
 
         public int maxRaptor = 30;
-
 
         [Header("Ending")]
         public GameObject endingPrefab;
@@ -57,6 +57,11 @@ namespace RaptoBus
             Playing = true;
         }
 
+        public void PauseGame()
+        {
+            onPause.Invoke();
+        }
+
         public void ResetGame()
         {
             onReset.Invoke();
@@ -66,6 +71,11 @@ namespace RaptoBus
         public void ReturnToMenu()
         {
             SceneManager.LoadScene(0);
+        }
+
+        public void ExitGame()
+        {
+            ResetGame();
         }
 
         public void Defeat()
