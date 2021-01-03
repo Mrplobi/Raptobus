@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e755d5132d15f64b9ad1a724e954ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRaptor: 1
+  maxRaptor: 10
   endingPrefab: {fileID: 6521099470580220068, guid: 119a793e27ef66145b68783c0c71aa6b, type: 3}
   endingParent: {fileID: 521885175}
 --- !u!4 &234655722

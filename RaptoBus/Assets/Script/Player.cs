@@ -123,6 +123,7 @@ namespace RaptoBus
             {
                 AddRaptor();
                 other.GetComponent<Raptor>().Collected();
+                Debug.Log("Raptor hit");
             }
             else if (other.GetComponent<Obstacle>() != null)
             {
