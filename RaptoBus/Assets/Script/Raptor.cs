@@ -13,12 +13,14 @@ namespace RaptoBus
         private bool isCollected = false;
         private AudioSource soundEffect;
 
+        [SerializeField]
+        SpriteRenderer bodyRenderer;
 
 
 
         private void Start()
         {
-            spriteWidth = GetComponent<SpriteRenderer>().bounds.size.x;
+            spriteWidth = bodyRenderer.bounds.size.x;
             soundEffect = GetComponent<AudioSource>();
         }
 
@@ -29,7 +31,6 @@ namespace RaptoBus
             speed = baseSpeed;
             transform.rotation = Quaternion.identity;
             transform.localScale = new Vector3(-1, 1, 1);
-            GetComponent<SpriteRenderer>().flipX = false;
             GetComponent<Collider>().enabled = true;
         }
 
@@ -43,11 +44,7 @@ namespace RaptoBus
                 {
                     isFollowingBus = true;
                     speed = 1f;
-                    SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
-                    foreach(SpriteRenderer s in sprites)
-                    {
-                        s.flipX = true;
-                    }
+                    GetComponent<Animator>().SetBool("IsChasingBus", true);
                 }
                 else
                 {
@@ -64,10 +61,11 @@ namespace RaptoBus
             if (GameManager.Instance.Playing && isFollowingBus)
             {
                 transform.position += new Vector3(speed*Time.deltaTime, 0, 0);
-                if(transform.position.x >= (Player.playerPos.x - Player.playerSize.x - spriteWidth/2))
+                //transform.position.x >= (Player.playerPos.x - Player.playerSize.x - spriteWidth/2)
+                if (transform.position.x >= (Player.playerPos.x - Player.playerSize.x))
                 {
                     // Animate fall instead of rotation (if time for animations)
-                    transform.Rotate(new Vector3(0, 0, -45));
+                    GetComponent<Animator>().SetTrigger("Fall");
                     speed = -2f;
                 }
             }
@@ -77,13 +75,9 @@ namespace RaptoBus
         public void Collected()
         {
             isCollected = true;
+            GetComponent<Animator>().enabled = false;
             soundEffect.Play();
             speed = 0f;
-            SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
-            foreach (SpriteRenderer s in sprites)
-            {
-                s.flipX = true;
-            }
             transform.localScale = new Vector3(-0.2f, 0.2f, 0.2f);
             transform.SetParent(FindObjectOfType<Player>().transform);
             transform.position = new Vector3(Player.playerPos.x - Random.Range(0.1f, Player.playerSize.x / 2), Random.Range(transform.parent.position.y, Player.playerPos.y + Player.playerSize.y), 0.1f);

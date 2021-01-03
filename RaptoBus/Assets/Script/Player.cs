@@ -123,6 +123,7 @@ namespace RaptoBus
             {
                 AddRaptor();
                 other.GetComponent<Raptor>().Collected();
+                Debug.Log("Raptor hit");
             }
             else if (other.GetComponent<Obstacle>() != null)
             {
@@ -147,7 +148,7 @@ namespace RaptoBus
         public void CallVictoryScreen()
         {
             GetComponent<Animator>().enabled = false;
-            UIManager.Instance.DisplayWin();
+            UIManager.Instance.DisplayWin(raptorCount);
         }
 
         public void ResetPos()
