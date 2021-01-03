@@ -17,6 +17,8 @@ namespace RaptoBus
         public GameObject winCanvas;
         public GameObject pauseCanvas;
 
+        public FinalRaptorCountUI finalRaptorCount;
+
         private UIState state = UIState.Init;
 
         private int raptorCount;
@@ -98,10 +100,20 @@ namespace RaptoBus
             failCanvas.SetActive(true);
         }
 
-        public void DisplayWin()
+        public void DisplayWin(int raptorCount)
         {
-            state = UIState.Win;
-            winCanvas.SetActive(true);
+            finalRaptorCount.gameObject.SetActive(true);
+            finalRaptorCount.SetFinalText(raptorCount);
+            if (raptorCount == 0)
+            {
+                state = UIState.Fail;
+                failCanvas.SetActive(true);
+            }
+            else
+            {
+                state = UIState.Win;
+                winCanvas.SetActive(true);
+            }
         }
 
         public void ResetGame()
@@ -109,6 +121,7 @@ namespace RaptoBus
             state = UIState.Play;
             failCanvas.SetActive(false);
             winCanvas.SetActive(false);
+            finalRaptorCount.gameObject.SetActive(false);
             gameCanvas.GetComponent<IngameUI>().Restart();
             // Reset game canvas - dist = 0, hide raptor count
         }

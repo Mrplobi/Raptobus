@@ -147,7 +147,7 @@ namespace RaptoBus
         public void CallVictoryScreen()
         {
             GetComponent<Animator>().enabled = false;
-            UIManager.Instance.DisplayWin();
+            UIManager.Instance.DisplayWin(raptorCount);
         }
 
         public void ResetPos()
