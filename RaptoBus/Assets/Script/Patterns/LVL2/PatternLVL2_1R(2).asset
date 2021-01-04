@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: PatternLVL2_1R(2)
   m_EditorClassIdentifier: 
   obstacles:
-  - type: 1
+  - type: 3
     offset: 0
   - type: 2
     offset: 4
+  - type: 0
+    offset: 6
   numberOfRaptors: 1
   totalPatternTime: 2
   difficultyLvl: 2

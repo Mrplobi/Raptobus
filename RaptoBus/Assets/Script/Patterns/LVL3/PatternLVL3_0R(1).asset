@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PatternLVL3_0R(1)
   m_EditorClassIdentifier: 
   obstacles:
-  - type: 0
+  - type: 2
     offset: 0
-  - type: 0
+  - type: 4
     offset: 5
-  - type: 0
+  - type: 3
     offset: 10
   numberOfRaptors: 0
   totalPatternTime: 3

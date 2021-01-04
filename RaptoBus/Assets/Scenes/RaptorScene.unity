@@ -3484,6 +3484,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b153427fcde9ec4a85974f0fb6ff3f7, type: 2}
   - {fileID: 11400000, guid: 6211c22f50019ec4fbffba35efe62b34, type: 2}
   - {fileID: 11400000, guid: 34b67d24202faba4a9cffe5dc7b3ef0f, type: 2}
+  - {fileID: 11400000, guid: 8af5053c46861f04a8de8dd0c8f0fa7f, type: 2}
+  - {fileID: 11400000, guid: c9366b4212caa304cb944aa0fb750cd1, type: 2}
   patternslvl3:
   - {fileID: 11400000, guid: c81f7ac9d095b6843ae24833c9f3d6a5, type: 2}
   - {fileID: 11400000, guid: 42232e9e76062bf43ae12b7a7657db9e, type: 2}

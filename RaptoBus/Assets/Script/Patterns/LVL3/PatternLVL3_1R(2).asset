@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afc8166948166554f891ff05fea57b1d, type: 3}
-  m_Name: PatternLVL2_0R(6)
+  m_Name: PatternLVL3_1R(2)
   m_EditorClassIdentifier: 
   obstacles:
-  - type: 0
-    offset: 0
   - type: 5
+    offset: 0
+  - type: 0
     offset: 5
+  - type: 2
+    offset: 9
   numberOfRaptors: 1
-  totalPatternTime: 2
-  difficultyLvl: 1
+  totalPatternTime: 3
+  difficultyLvl: 3
