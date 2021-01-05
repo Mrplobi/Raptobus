@@ -78,8 +78,7 @@ namespace RaptoBus
             PatternDescriptor previousPattern = new PatternDescriptor();
             for (int i = 0; i < 3; i++)
             {
-                AddEmpty(2);
-                Debug.Log(GameManager.Instance.maxRaptor);
+                AddEmpty(1);
                 while (raptorCount < (i+1)*(GameManager.Instance.maxRaptor/3))
                 {
                     PatternDescriptor newPattern = (patterns[i])[UnityEngine.Random.Range(0, patterns[i].Count)];
@@ -92,7 +91,21 @@ namespace RaptoBus
                     }
                 }
             }
-            Debug.Log(raptorCount);
+            // Max raptor not a multiple of 3
+            if(raptorCount != GameManager.Instance.maxRaptor)
+            {
+                while (raptorCount < GameManager.Instance.maxRaptor)
+                {
+                    PatternDescriptor newPattern = (patterns[2])[UnityEngine.Random.Range(0, patterns[2].Count)];
+                    if (newPattern != previousPattern)
+                    {
+                        completePatterns.Add(newPattern);
+                        previousPattern = newPattern;
+                        raptorCount += newPattern.numberOfRaptors;
+                        Progression.totalDist += newPattern.totalPatternTime;
+                    }
+                }
+            }
             AddEmpty(2);
         }
 
