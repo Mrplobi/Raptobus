@@ -29,9 +29,10 @@ namespace RaptoBus
             isFollowingBus = false;
             isCollected = false;
             speed = baseSpeed;
-            transform.rotation = Quaternion.identity;
             transform.localScale = new Vector3(-1, 1, 1);
             GetComponent<Collider>().enabled = true;
+            GetComponent<Animator>().enabled = true;
+            GetComponent<Animator>().SetTrigger("Reset");
         }
 
 
@@ -44,10 +45,12 @@ namespace RaptoBus
                 {
                     isFollowingBus = true;
                     speed = 1f;
+                    transform.position = new Vector3(-17, transform.position.y, transform.position.z);
                     GetComponent<Animator>().SetBool("IsChasingBus", true);
                 }
                 else
                 {
+                    GetComponent<Collider>().enabled = false;
                     Free();
                 }
             }
@@ -67,6 +70,7 @@ namespace RaptoBus
                     // Animate fall instead of rotation (if time for animations)
                     GetComponent<Animator>().SetTrigger("Fall");
                     speed = -2f;
+                    GetComponent<Animator>().SetBool("IsChasingBus", false);
                 }
             }
         }
@@ -78,10 +82,24 @@ namespace RaptoBus
             GetComponent<Animator>().enabled = false;
             soundEffect.Play();
             speed = 0f;
+            foreach(SpriteRenderer r in GetComponentsInChildren<SpriteRenderer>())
+            {
+                r.flipX = true;
+            }
             transform.localScale = new Vector3(-0.2f, 0.2f, 0.2f);
             transform.SetParent(FindObjectOfType<Player>().transform);
             transform.position = new Vector3(Player.playerPos.x - Random.Range(0.1f, Player.playerSize.x / 2), Random.Range(transform.parent.position.y, Player.playerPos.y + Player.playerSize.y), 0.1f);
             GetComponent<Collider>().enabled = false;
+        }
+
+
+       
+        public new void Free()
+        {
+            gameObject.SetActive(false);
+            available = false;
+            // Sprite goes boom if reused
+            // But it's game that goes boom if destroyed instead of freed
         }
     }
 }

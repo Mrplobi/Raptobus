@@ -401,7 +401,7 @@ MonoBehaviour:
   gameCanvas: {fileID: 998885273}
   failCanvas: {fileID: 879053067}
   winCanvas: {fileID: 2071460594}
-  pauseCanvas: {fileID: 0}
+  pauseCanvas: {fileID: 1183313118}
   finalRaptorCount: {fileID: 972685406}
 --- !u!114 &179555951
 MonoBehaviour:
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e755d5132d15f64b9ad1a724e954ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRaptor: 10
+  maxRaptor: 6
   endingPrefab: {fileID: 6521099470580220068, guid: 119a793e27ef66145b68783c0c71aa6b, type: 3}
   endingParent: {fileID: 521885175}
 --- !u!4 &234655722
@@ -2285,6 +2285,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1183313118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4316470025253225225, guid: 6ecd552a47bf8894badf5040abfcbeb3, type: 3}
+  m_PrefabInstance: {fileID: 418568898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1325306829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,7 +2419,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 50
   field of view: 60
   orthographic: 1
   orthographic size: 7.95
@@ -3474,11 +3479,11 @@ MonoBehaviour:
   - {fileID: 1453604081935800596, guid: 6e351156cb9fb2146800920217cd50eb, type: 3}
   patternslvl1:
   - {fileID: 11400000, guid: 06ea52d439934c94e8f93de25c450140, type: 2}
-  - {fileID: 11400000, guid: 6f4806e2de8d1464e9fa49d00575ca27, type: 2}
   - {fileID: 11400000, guid: a960b3baa85ae004dac99f4f4bd16fdd, type: 2}
   - {fileID: 11400000, guid: ca048fddd85c29040b69152bea6d7cf3, type: 2}
   - {fileID: 11400000, guid: 1a543e34924ccf3419350f1bdb9bf98f, type: 2}
-  - {fileID: 11400000, guid: c9366b4212caa304cb944aa0fb750cd1, type: 2}
+  - {fileID: 11400000, guid: 0b7afbf14312c8742a0e82a53129185a, type: 2}
+  - {fileID: 11400000, guid: 5ca130e176cafc248ba7111739496b3f, type: 2}
   patternslvl2:
   - {fileID: 11400000, guid: c4f1a5480da59db4a804b28a7bd06636, type: 2}
   - {fileID: 11400000, guid: 6b153427fcde9ec4a85974f0fb6ff3f7, type: 2}
@@ -3488,7 +3493,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9366b4212caa304cb944aa0fb750cd1, type: 2}
   patternslvl3:
   - {fileID: 11400000, guid: c81f7ac9d095b6843ae24833c9f3d6a5, type: 2}
+  - {fileID: 11400000, guid: f5a88ecd6ac0e9942a74a1e7e0b0d4fd, type: 2}
+  - {fileID: 11400000, guid: f7d43e74876a88a4eaae0f7a7abaa7fc, type: 2}
   - {fileID: 11400000, guid: 42232e9e76062bf43ae12b7a7657db9e, type: 2}
+  - {fileID: 11400000, guid: 30576975ba967de40a34d631df36d549, type: 2}
+  - {fileID: 11400000, guid: 127393be81a102a428adc088129307e2, type: 2}
   emptyPattern: {fileID: 11400000, guid: 18c6b12db612cf441b9974a4ad4c9c9c, type: 2}
   completePatterns: []
   xSpawnPosition: 16
@@ -3835,6 +3844,10 @@ PrefabInstance:
     - target: {fileID: 3762613199286866236, guid: ca46e6fd377fecb4e9563836b0e12524, type: 3}
       propertyPath: busControls.m_Bindings.Array.data[8].m_Action
       value: FastFall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762613199286866236, guid: ca46e6fd377fecb4e9563836b0e12524, type: 3}
+      propertyPath: jumpPower
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3762613199286866237, guid: ca46e6fd377fecb4e9563836b0e12524, type: 3}
       propertyPath: m_SortingOrder

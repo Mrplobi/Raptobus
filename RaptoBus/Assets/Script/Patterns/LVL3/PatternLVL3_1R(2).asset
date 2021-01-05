@@ -18,7 +18,7 @@ MonoBehaviour:
   - type: 0
     offset: 5
   - type: 2
-    offset: 9
+    offset: 10
   numberOfRaptors: 1
   totalPatternTime: 3
   difficultyLvl: 3

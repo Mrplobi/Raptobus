@@ -19,7 +19,7 @@ namespace RaptoBus
 
         private bool playing = true;
 
-        public int maxRaptor = 30;
+        public int maxRaptor = 10;
 
         [Header("Ending")]
         public GameObject endingPrefab;

@@ -15,8 +15,8 @@ namespace RaptoBus
         public float spawnHeight;
         public ObstacleType type;
 
-        private float speedModifier = 1;
-        private float speedCoeff = 0.8f;
+        protected float speedModifier = 1;
+        protected float speedCoeff = 0.8f;
 
         // Update is called once per frame
         void FixedUpdate()

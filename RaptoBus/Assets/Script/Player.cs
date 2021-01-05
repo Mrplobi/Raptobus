@@ -44,9 +44,10 @@ namespace RaptoBus
             playerPos = transform.position;
             playerSize = GetComponent<SpriteRenderer>().bounds.size;
             GameManager.Instance.onWin += Arrive;
-            GameManager.Instance.onLaunch += ToggleControls;
-            GameManager.Instance.onDefeat += ToggleControls;
+            GameManager.Instance.onLaunch += ToggleControlsOn;
+            GameManager.Instance.onDefeat += ToggleControlsOff;
             GameManager.Instance.onReset += ResetPos;
+            GameManager.Instance.onReset += ResetRaptorCount;
         }
 
         private void FixedUpdate()
@@ -65,6 +66,8 @@ namespace RaptoBus
             }
         }
 
+
+        /*
         public void ToggleControls()
         {
             if(busControls.enabled)
@@ -75,6 +78,18 @@ namespace RaptoBus
             {
                 busControls.Enable();
             }
+        }
+
+        */
+
+        public void ToggleControlsOn()
+        {
+            busControls.Enable();
+        }
+
+        public void ToggleControlsOff()
+        {
+            busControls.Disable();
         }
 
         private bool isGrounded()
@@ -134,7 +149,7 @@ namespace RaptoBus
         private void AddRaptor()
         {
             RaptorCount++;
-            Debug.Log("Raptor Get! " + raptorCount + "/30");
+            Debug.Log("Raptor Get! " + raptorCount);
             UIManager.Instance.AddRaptorCount();
         }
 
@@ -142,7 +157,7 @@ namespace RaptoBus
         {
             GetComponent<Animator>().enabled = true;
             GetComponent<Animator>().SetTrigger("Arrive");
-            ToggleControls();
+            ToggleControlsOff();
         }
 
         public void CallVictoryScreen()
@@ -154,7 +169,13 @@ namespace RaptoBus
         public void ResetPos()
         {
             transform.position = playerPos;
-            ToggleControls();
+            ToggleControlsOn();
+        }
+
+
+        public void ResetRaptorCount()
+        {
+            raptorCount = 0;
         }
     }
 }
