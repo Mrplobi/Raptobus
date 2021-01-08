@@ -126,6 +126,11 @@ namespace RaptoBus
             foreach (Obstacle obstacle in obstacles)
             {
                 obstacle.Free();
+                // Can't reuse raptor otherwise sprites goes all wrong (last moment fix)
+                if (obstacle.GetComponent<Raptor>() != null)
+                {
+                    obstacle.available = false;
+                }
             }
             ChoosePaterns();
         }
