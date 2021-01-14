@@ -9,6 +9,7 @@ namespace RaptoBus
         [SerializeField]
         private float parallaxSpeed;
         public float coefSpeed = 1f;
+        public float accelerationRate = 0.01f;
 
         private float length;
         private Vector3 startPos;
@@ -21,28 +22,36 @@ namespace RaptoBus
         {
             startPos = transform.position;
             length = GetComponent<SpriteRenderer>().bounds.size.x;
+            Debug.LogError("Length : " + name + " " + length);
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             if (GameManager.Instance.Playing)
             {
-
-                // TODO
-                // Progressively augment coefSpeed
-
-                dist = Mathf.Repeat(Time.time * parallaxSpeed * coefSpeed, length);
-                newPos = new Vector3(dist, 0, 0);
-                transform.position = startPos - newPos;
+                newPos = transform.position - new Vector3(parallaxSpeed * coefSpeed * Time.fixedDeltaTime, 0);
+                if(transform.position.x <= -length)
+                {
+                    transform.position = new Vector3(31.7f*3,transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    transform.position = newPos;
+                }
             }
         }
 
 
         // Accelerate from current speed to newSpeed
-        public void Accelerate(float newSpeed)
+        public IEnumerator Accelerate(float newSpeed)
         {
-            // TODO
+            while (coefSpeed < newSpeed)
+            {
+                coefSpeed += (newSpeed - coefSpeed) * Time.fixedDeltaTime;
+                //coefSpeed += accelerationRate * Time.fixedDeltaTime;
+                yield return new WaitForEndOfFrame();
+            }
         }
 
 
@@ -50,7 +59,6 @@ namespace RaptoBus
         public void ResetSpeed()
         {
             coefSpeed = 1f;
-            // TODO
         }
     }
 }

@@ -39,7 +39,7 @@ namespace RaptoBus
             {
                 foreach (BackgroundParallax bg in parallaxBG)
                 {
-                    bg.Accelerate(1f + (0.2f * lvl));
+                    StartCoroutine(bg.Accelerate(1f + (0.5f * lvl)));
                 }
                 Debug.Log("BG speed up");
                 curLvl = lvl;
@@ -52,6 +52,7 @@ namespace RaptoBus
             {
                 bg.ResetSpeed();
             }
+            curLvl = 0;
             Debug.Log("Reset BG speed");
         }
 
