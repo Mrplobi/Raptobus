@@ -15,6 +15,9 @@ namespace RaptoBus
         public List<PatternDescriptor> patternslvl3;
         public PatternDescriptor emptyPattern;
 
+        private bool isFirstObstacle = true;
+        private int curLvl = 0;
+
 
         [SerializeField]
         private List<PatternDescriptor> completePatterns = new List<PatternDescriptor>();
@@ -50,6 +53,11 @@ namespace RaptoBus
         public void LaunchPattern(PatternDescriptor descriptor)
         {
             Debug.Log("Launching " + descriptor.name);
+            // If launching empty > either 1st empty or lvl up > speed up background
+            if (descriptor.difficultyLvl == 0)
+            {
+                BackgroundManager.Instance.SpeedUp(curLvl);
+            }
             foreach (ObstacleDescriptor obstacleDes in descriptor.obstacles)
             {
                 Obstacle obstacle = obstacles.Find(x => x.available == true && x.type == obstacleDes.type);
@@ -61,6 +69,10 @@ namespace RaptoBus
                 obstacle.transform.position = new Vector3(xSpawnPosition + obstacleDes.offset, obstacle.spawnHeight);
                 obstacle.transform.SetParent(obstacleParent);
                 obstacle.Launch(descriptor.difficultyLvl);
+                if(curLvl < descriptor.difficultyLvl)
+                {
+                    curLvl = descriptor.difficultyLvl;
+                }
             }
             timer = descriptor.totalPatternTime;
         }
@@ -120,6 +132,7 @@ namespace RaptoBus
 
         private void Restart()
         {
+            curLvl = 0;
             timer = 2;
             idPattern = 0;
             Progression.totalDist = 0;

@@ -40,7 +40,16 @@ namespace RaptoBus
 
         internal void Launch(int lvl)
         {
-            speedModifier = lvl*speedCoeff;
+            if(lvl != 3)
+            {
+                speedModifier = lvl * speedCoeff;
+            }
+            // Slow lvl 3 a bit
+            else
+            {
+                speedModifier = lvl * speedCoeff * 0.8f;
+            }
+
             gameObject.SetActive(true);
             available = false;
         }
