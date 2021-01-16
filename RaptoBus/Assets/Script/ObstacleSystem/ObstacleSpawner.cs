@@ -15,7 +15,6 @@ namespace RaptoBus
         public List<PatternDescriptor> patternslvl3;
         public PatternDescriptor emptyPattern;
 
-        private bool isFirstObstacle = true;
         private int curLvl = 0;
 
 

@@ -16,13 +16,16 @@ namespace RaptoBus
 
         private float dist;
         private Vector3 newPos;
+        // Delta to avoid gaps in between parallex rep
+        public float delta = 0.1f;
+
+        public bool isAccelerationStopped = false;
 
         // Start is called before the first frame update
         void Start()
         {
             startPos = transform.position;
             length = GetComponent<SpriteRenderer>().bounds.size.x;
-            Debug.LogError("Length : " + name + " " + length);
         }
 
         // Update is called once per frame
@@ -31,9 +34,9 @@ namespace RaptoBus
             if (GameManager.Instance.Playing)
             {
                 newPos = transform.position - new Vector3(parallaxSpeed * coefSpeed * Time.fixedDeltaTime, 0);
-                if(transform.position.x <= -length)
+                if(newPos.x <= -length)
                 {
-                    transform.position = new Vector3(31.7f*3,transform.position.y, transform.position.z);
+                    transform.position = new Vector3(length * 4 * transform.localScale.x, transform.position.y, transform.position.z) - new Vector3(delta, 0, 0);
                 }
                 else
                 {
@@ -48,17 +51,24 @@ namespace RaptoBus
         {
             while (coefSpeed < newSpeed)
             {
+                if (isAccelerationStopped)
+                {
+                    yield break;
+                }
                 coefSpeed += (newSpeed - coefSpeed) * Time.fixedDeltaTime;
-                //coefSpeed += accelerationRate * Time.fixedDeltaTime;
                 yield return new WaitForEndOfFrame();
             }
+            coefSpeed = newSpeed;
         }
 
 
         // Reset to initial speed
         public void ResetSpeed()
         {
+            isAccelerationStopped = true;
             coefSpeed = 1f;
+            transform.position = startPos;
+            Debug.Log("pass in reset");
         }
     }
 }
